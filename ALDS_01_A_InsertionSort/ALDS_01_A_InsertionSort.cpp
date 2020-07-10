@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
-void out_int_array(int A[], int n);
+void outIntArray(int A[], int n);
+void insertionSort(int A[], int n);
 
 int main()
 {
@@ -11,7 +12,14 @@ int main()
     {
         cin >> A[i];
     }
-    out_int_array(A, n);
+    outIntArray(A, n);
+    insertionSort(A, n);
+    
+    return 0;
+}
+
+void insertionSort(int A[], int n)
+{
     int v,j;
     for (int i = 1; i < n; i++)
     {
@@ -23,13 +31,11 @@ int main()
             j--;
         }
         A[j + 1] = v;
-        out_int_array(A, n);
+        outIntArray(A, n);
     }
-    
-    return 0;
 }
 
-void out_int_array(int A[], int n)
+void outIntArray(int A[], int n)
 {
     for (int i = 0; i < n - 1; i++)
     {

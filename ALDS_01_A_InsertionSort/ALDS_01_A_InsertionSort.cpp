@@ -20,18 +20,21 @@ int main()
 
 void insertionSort(int A[], int n)
 {
-    int v,j;
-    for (int i = 1; i < n; i++)
+    if(A != nullptr)
     {
-        v = A[i];
-        j = i - 1;
-        while(j >= 0 && A[j] >v)
+        int v,j;
+        for (int i = 1; i < n; i++)
         {
-            A[j+1] = A[j];
-            j--;
+            v = A[i];
+            j = i - 1;
+            while(j >= 0 && A[j] >v)
+            {
+                A[j+1] = A[j];
+                j--;
+            }
+            A[j + 1] = v;
+            outIntArray(A, n);
         }
-        A[j + 1] = v;
-        outIntArray(A, n);
     }
 }
 

@@ -1,26 +1,42 @@
 #include<iostream>
 using namespace std;
-void outIntArray(int A[], int n);
-int selectionSort(int A[], int n);
-int bubbleSort(int A[], int n);
+struct Card{char suit, value;};
+void outCardArray(struct Card  A[], int n);
+int selectionSort(struct Card  A[], int n);
+int bubbleSort(struct Card  A[], int n);
+bool isStable(struct Card in[], struct Card out[], int n);
 
 int main()
 {
-    int n,A[100]={};
+    int n;
+    struct Card C1[100]={};
+    struct Card C2[100]={};
     cin >> n;
 
     for (int i = 0; i < n; i++)
     {
-        cin >> A[i];
+        cin >> C1[i].suit >> C1[i].value;
     }
-    int countSwap = selectionSort(A, n);
-    outIntArray(A, n);
-    cout << countSwap << endl;
+    for (int i = 0; i < n; i++) C2[i] = C1[i];
+    
+    bubbleSort(C1, n);
+    outCardArray(C1, n);
+    cout << "Stable" << endl;
+    selectionSort(C2, n);
+    outCardArray(C2, n);
+    if(isStable(C1, C2, n))
+    {
+        cout << "Stable" << endl;
+    }
+    else
+    {
+        cout << "Not stable" << endl;
+    }
 
     return 0;
 }
 
-int bubbleSort(int A[], int n)
+int bubbleSort(struct Card A[], int n)
 {
     bool flag = true;
     int temp = 0;
@@ -30,7 +46,7 @@ int bubbleSort(int A[], int n)
         flag = false;
         for (int i = n - 1 ; i > 0; i--)
         {
-            if(A[i] < A[i - 1])
+            if(A[i].value < A[i - 1].value)
             {
                 swap(A[i],A[i - 1]);
                 flag = true;
@@ -41,7 +57,7 @@ int bubbleSort(int A[], int n)
     return counter;
 }
 
-int selectionSort(int A[], int n)
+int selectionSort(struct Card A[], int n)
 {
     int counter =0;
     if( A != nullptr) 
@@ -51,7 +67,7 @@ int selectionSort(int A[], int n)
             int minj = i;
             for (int j = i; j < n; j++)
             {
-                if(A[j] < A[minj]) minj = j; 
+                if(A[j].value < A[minj].value) minj = j; 
             }
             if(i != minj)
             {
@@ -64,11 +80,20 @@ int selectionSort(int A[], int n)
     return counter;
 }
 
-void outIntArray(int A[], int n)
+void outCardArray(struct Card A[], int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
-        cout << A[i] << " ";
+        cout << A[i].suit << A[i].value << " ";
     }
-    cout << A[n -1] << endl;
+    cout << A[n -1].suit << A[n - 1].value << endl;
+}
+
+bool isStable(struct Card in[], struct Card out[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if(in[i].suit != out[i].suit) return false;
+    }
+    return true;
 }

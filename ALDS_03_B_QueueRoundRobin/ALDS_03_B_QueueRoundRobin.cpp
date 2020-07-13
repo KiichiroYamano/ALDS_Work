@@ -46,7 +46,6 @@ class myQueue
         else head++;
         return true;
     }
-
 };
 
 int main()
@@ -56,7 +55,6 @@ int main()
     
     myQueue mq;
     procStruct ps;
-
     for (int i = 0; i < n; i++)
     {
         cin >> ps.name >> ps.time;

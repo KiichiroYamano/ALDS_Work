@@ -1,12 +1,12 @@
 #include<iostream>
-#define MAX_MYSTACK 100
+#define MAX_MYSTACK 1000
 #define MIN_MYSTACK 1
 using namespace std;
 
 
 class myStack
 {
-    int st[101]={};
+    int st[MAX_MYSTACK]={};
     int top;
 
     public:
@@ -47,9 +47,9 @@ class myStack
 int main()
 {
     int i=0;
-    char s[100]={};
+    char s[1000]={};
     myStack st;
-    cin.getline(s,100);
+    cin.getline(s,1000);
     int res=0,a=0,b=0;
     while(s[i] != '\000' && s[i] != EOF)
     {
@@ -63,13 +63,13 @@ int main()
         {
             st.pop(a);
             st.pop(b);
-            st.push(a - b);           
+            st.push(b - a);           
         }
         else if(s[i] == '/')
         {
             st.pop(a);
             st.pop(b);
-            st.push(a / b);
+            st.push(b / a);
         }
         else if(s[i] == '*')
         {
@@ -77,22 +77,22 @@ int main()
             st.pop(b);
             st.push(a * b);
         }
+        else if(s[i] == ' '){/*do nothing*/}
         else
         {
+            int x = 0;
             while(s[i] != ' ')
             {
-                
+                x = x * 10 + (int)(s[i] - '0');
                 i++;
             }
-            
-            st.push((int)s[i]);
+            st.push(x);
         }
-        
         i++;
     }
     
     st.pop(a);
-    cout << a;
+    cout << a << endl;
     
     return 0;
 }

@@ -11,14 +11,19 @@ struct Node
 
 class DoublyLinkedList
 {
-    public:
     Node *nil;
 
+    public:
     DoublyLinkedList()
     {
         nil = (Node *)malloc(sizeof(Node));
         nil->next = nil;
         nil->prev = nil;
+    }
+
+    Node* getNil()
+    {
+        return nil;
     }
 
     void insert(int key)
@@ -27,6 +32,7 @@ class DoublyLinkedList
         x->key = key;
         x->next = nil->next;
         nil->next->prev = x;
+        nil->next = x;
         x->prev = nil;
     }
 
@@ -64,15 +70,18 @@ class DoublyLinkedList
 
 void printList(DoublyLinkedList list)
 {
-    Node *cur = list.nil->next;
+    Node *nil = list.getNil();
+    Node *cur = nil->next;
     int isf = 0;
     while(1)
     {
-        if(cur == list.nil) break;
+        if(cur == nil) break;
         if(isf > 0) printf(" ");
         printf("%d", cur->key);
         cur = cur->next;
+        isf++;
     }
+    printf("\n");
 }
 
 int main()

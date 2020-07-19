@@ -11,8 +11,8 @@ void merge(int A[], int left, int mid, int right)
     int L[n1 + 1], R[n2 + 1];
     for (int i = 0; i < n1; i++) L[i] = A[left + i];
     for (int i = 0; i < n2; i++) R[i] = A[mid + i];
-    L[n1] = INT_MAX;
-    R[n2] = INT_MAX;
+    L[n1] = 2147483647;
+    R[n2] = 2147483647;
 
     int i_left = 0;
     int i_right = 0;
@@ -56,11 +56,11 @@ int main()
 
     mergeSort(A, 0, n);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n - 1; i++)
     {
         printf("%d ", A[i]);
     }
-    printf("\n%d\n", cmp_counter);
+    printf("%d\n%d\n", A[n - 1], cmp_counter);
     
     return 0;
 }
